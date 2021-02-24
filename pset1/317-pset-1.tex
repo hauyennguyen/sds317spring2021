@@ -1,0 +1,779 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdftitle={317 pset 1},
+            pdfauthor={Valerie Nguyen},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+
+\title{317 pset 1}
+\providecommand{\subtitle}[1]{}
+\subtitle{In collaboration with Matthew Jacob, Elliot Britton, Megan McQueen, Kim
+Dao, Abbyy Steckel and Alan George}
+\author{Valerie Nguyen}
+\date{2/23/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{problem-1}{%
+\subsection{Problem 1}\label{problem-1}}
+
+\hypertarget{a}{%
+\subsubsection{(a)}\label{a}}
+
+\hypertarget{i.}{%
+\paragraph{i.}\label{i.}}
+
+This is FALSE. We can see the counter example as follows:
+
+Let \(A_1, A_2, A_3 \sim N(0,1)\) and they are independent random
+variables so that \[X = A_1 + A_2\] \[Y = A_1 + A_3\] \[Z = A_1 - A_3\]
+From this, since \(A_1, A_2, A_3\) are all independent, the covariances
+between them will be 0, and we can write the covariances between
+\(X, Y, Z\) as follows:
+\[Cov(X,Y) = Cov(A_1 + A_2, A_1 + A_3) = Cov(A_1, A_1) + Cov(A_2,A_1) + Cov(A_1, A_3) + Cov(A_2, A_3)\]
+\[= var(A_1)\] Similarly we have:
+\[Cov(X,Z) = Cov(A_1 + A_2, A_1 - A_3) = var(A_1)\]
+\[Cov(Z, Y) = Cov(A_1 - A_3, A_1 + A_3) = Cov(A_1, A_1) - Cov(A_3, A_3) + Cov(A_1, A_3) - Cov(A_3, A_1)\]
+\[= var(A_1) - var(A_3)\]
+
+\begin{itemize}
+\item
+  If \(Cov(X,Y), Cov(X,Z) > 0\), then that means \(var(A_1) >0\).
+\item
+  If \(Cov(Z,Y) \geq 0\) then \(var(A_1) \geq var(A_3)\), but
+  \(var(A_3)\) can always be greater than \(var(A_1)\) which would make
+  \(Cov(Z,Y) < 0\), making the given statement untrue.
+\end{itemize}
+
+\hypertarget{ii.}{%
+\paragraph{ii.}\label{ii.}}
+
+We can use a property of the correlation between two rv's
+\(-1 \leq \rho(X,Y) \leq 1\): \[-1 \leq \rho(X,Y) \leq 1\]
+\[-1 \leq \frac{Cov(X,Y)}{\sigma_X \sigma_Y} \leq 1\]
+\[- \sigma_X \sigma_Y \leq Cov(X,Y) \leq \sigma_X \sigma_Y\] Therefore
+\(- \sigma_X \sigma_Y \leq Cov(X,Y)\). \#\#\#\# iii. This is FALSE, we
+can consider the counter example below:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{2}\NormalTok{,}\OperatorTok{-}\DecValTok{4}\NormalTok{,}\OperatorTok{-}\DecValTok{6}\NormalTok{)}
+\NormalTok{Y <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+
+\NormalTok{(cov_xy <-}\StringTok{ }\KeywordTok{cov}\NormalTok{(X,Y))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(cor_xy <-}\StringTok{ }\KeywordTok{cor}\NormalTok{(X,Y))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cor_xy }\OperatorTok{<=}\StringTok{ }\NormalTok{cov_xy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\hypertarget{b}{%
+\subsubsection{(b)}\label{b}}
+
+\hypertarget{i.-1}{%
+\paragraph{i.}\label{i.-1}}
+
+We have \(X \sim Unif[0,1]\):
+
+\begin{itemize}
+\item
+  \(\mathbb{E}(X) = \frac12\)
+\item
+  \(f_X(x) = 1\) for \(0 \leq x \leq 1\)
+\end{itemize}
+
+Since \(Y \sim Unif[0, X]\), we have:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f_{Y|X} (y|x) = \frac{1}{x}\) for \(0 \leq y \leq x\)
+\end{itemize}
+
+The joint density of X \& Y:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f_{X,Y}(x,y) = f_{Y|X} (y|x) f_X(x) = \frac{1}{x} * 1 = \frac{1}{x}\)
+  for \(0 \leq x \leq 1\); \(0 \leq y \leq x\)
+\end{itemize}
+
+We can find the pdf of Y: *
+\(f_Y(y) = \int_{-\infty }^{\infty} f_{X,Y}(x,y) dx = \int_y^1 \frac{1}{x}dx = ln(x) |_y^1 = -ln(y)\)
+for \(0 \leq y \leq 1\).
+
+\[\mathbb{E}(Y) = \int_{-\infty }^{\infty} y f_Y(y)dy = \int_0^1 y(-ln(y)) dy\]
+\[\mathbb{E}(Y) =  \frac14\] \#\#\#\# ii. Find \(Cov(X,Y)\) * First we
+find \(\mathbb{E}(XY) = \int \int xyf_{X,Y}(x,y)dxdy\):
+
+\[\mathbb{E}(XY) = \int_0^1 \int_0^x xy \frac{1}{x} dy dx\]
+\[= \int_0^1 \frac{y^2}{2}|_0^xdx\] \[= \int_0^1 \frac{x^2}{2}dx\]
+\[ = \frac12\] We have
+\[Cov(X,Y) = \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y) = \frac12 - \frac12*\frac14 = \frac{1}{24}\]
+\#\#\#\# iii. Find \(Cor(X, Y)\) We have
+\(Cor(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y))}}\).\\
+Find \(Var(X)\):
+
+\begin{itemize}
+\item
+  \(\mathbb{E}(X^2) = \int_0^1 x^2 * 1 dx = \frac{x^3}{3}|_0^1 = \frac13\)
+\item
+  \(Var(X) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2 = \frac13 - \frac12^2 = \frac1{12}\)
+\end{itemize}
+
+Find \(Var(Y)\): *
+\(\mathbb{E}(Y^2) = \int_0^1 y^2 * (-ln(y))dy = \frac{y^3}{9} |_0^1 = \frac19\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(Var(Y) = \mathbb{E}(Y^2) - (\mathbb{E}(Y))^2 = \frac19 - \frac14^2 = \frac7{144}\)
+\end{itemize}
+
+We know that \(Cov(X,Y) = \frac1{24}\). Therefore:
+
+\[Cor(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y))}}\]
+\[Cor(X,Y) = \frac{\frac1{24}}{\sqrt{\frac{1}{12} * \frac{7}{144}}} = \sqrt{\frac37}\]
+
+\hypertarget{problem-2}{%
+\subsection{Problem 2}\label{problem-2}}
+
+\hypertarget{a-show-that-tau-is-unbiased}{%
+\subsubsection{\texorpdfstring{(a) Show that \(\tau\) is
+unbiased}{(a) Show that \textbackslash{}tau is unbiased}}\label{a-show-that-tau-is-unbiased}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y_ic <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\OperatorTok{-}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{y_it <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+
+\NormalTok{(ATE <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y_it) }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y_ic))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.75
+\end{verbatim}
+
+We find here that ATE is 1.75. This value is also equal to the
+difference between the expected value of the treated subset of \(Y_i\)
+and the expected value of the control subset of \(Y_i\).
+\[\hat{\tau} = E(treated) - E(control)\] Now, when we take a look at
+each of these expected values, we see that the mean of 3 randomly chosen
+treated units should be an unbiasted estimator of the treated group:
+\[E(treated) = E(\frac13 \sum_{i=1}^{3} (treated\,unit))\] Similarly, we
+would have: \[E(control) = E(\frac15 \sum_{i=1}^5 (control \, unit))\]
+Thereby \(\hat{\tau} = E(treated) - E(control)\) should be an unbiased
+estimate of \(\bar{\tau}\)
+\[E(\hat{\tau}) = E(\frac13 \sum_{i=1}^{3} (treated\,unit)) - E(\frac15 \sum_{i=1}^5 (control \, unit))\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{571}\NormalTok{)}
+\NormalTok{nit <-}\StringTok{ }\DecValTok{10000}
+\NormalTok{hat_tau <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, nit)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nit) \{}
+\NormalTok{  it <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ F)}
+\NormalTok{  hat_tau[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y_it[it]) }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y_ic[}\OperatorTok{-}\NormalTok{it])}
+\NormalTok{\}}
+\KeywordTok{mean}\NormalTok{(hat_tau)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.76238
+\end{verbatim}
+
+We find that the average of 10000 simulations of \(\hat{\tau}\) is
+1.762, really close to the ATE, therefore \(\hat{\tau}\) is unbiased.
+
+\hypertarget{b-single-run}{%
+\subsubsection{(b) Single run}\label{b-single-run}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{t <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ F)}
+\NormalTok{(hat_se <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{var}\NormalTok{(y_it[t])}\OperatorTok{/}\DecValTok{3} \OperatorTok{+}\StringTok{ }\KeywordTok{var}\NormalTok{(y_ic[}\OperatorTok{-}\NormalTok{t])}\OperatorTok{/}\NormalTok{(}\DecValTok{8-3}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6879922
+\end{verbatim}
+
+\hypertarget{c-estimate-se-of-hattau}{%
+\subsubsection{\texorpdfstring{(c) Estimate SE of
+\(\hat{\tau}\)}{(c) Estimate SE of \textbackslash{}hat\{\textbackslash{}tau\}}}\label{c-estimate-se-of-hattau}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#standard error of simulated hat_tau}
+\KeywordTok{sd}\NormalTok{(hat_tau)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9978877
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#using the formula from (b), run 10000 simulations to calculate the actual value of the SE of hat_tau and average over these simulations}
+
+\NormalTok{nit <-}\StringTok{ }\DecValTok{10000}
+\NormalTok{hat_tau_se <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, nit)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nit) \{}
+\NormalTok{  it <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ F)}
+\NormalTok{  hat_tau_se[i] <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(}\KeywordTok{var}\NormalTok{(y_it[it])}\OperatorTok{/}\DecValTok{3} \OperatorTok{+}\StringTok{ }\KeywordTok{var}\NormalTok{(y_ic[}\OperatorTok{-}\NormalTok{it])}\OperatorTok{/}\NormalTok{(}\DecValTok{8-3}\NormalTok{))}
+\NormalTok{\}}
+\KeywordTok{mean}\NormalTok{(hat_tau_se)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.115617
+\end{verbatim}
+
+From the simulation, I see that the formula generates a higher value (by
+0.2) on average for the SE of \(\hat{\tau}\) than what we found from
+\(\hat{\tau}\) from previous simulation. It seems that the standard
+formula might be a little biased as it produces a lower SE and makes the
+result seem more precise.
+
+\hypertarget{d}{%
+\subsubsection{(d)}\label{d}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tau_m1 <-}\StringTok{ }\KeywordTok{median}\NormalTok{(y_it }\OperatorTok{-}\StringTok{ }\NormalTok{y_ic)}
+\NormalTok{tau_m2 <-}\StringTok{ }\KeywordTok{median}\NormalTok{(y_it) }\OperatorTok{-}\StringTok{ }\KeywordTok{median}\NormalTok{(y_ic)}
+\KeywordTok{c}\NormalTok{(tau_m1, tau_m2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.0 2.5
+\end{verbatim}
+
+We see that
+\(median(Y_{it} - Y_{ic}) \neq median(Y_{it}) - median(Y_{ic})\). Now we
+run 10000 simulations to see if our estimator could be an unbiased
+estimator of either median equations:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nit <-}\StringTok{ }\DecValTok{10000}
+\NormalTok{tau_m <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, nit)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nit) \{}
+\NormalTok{  it <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{), }\DecValTok{3}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ F)}
+\NormalTok{  tau_m[i] <-}\StringTok{ }\KeywordTok{median}\NormalTok{(y_it[it]) }\OperatorTok{-}\StringTok{ }\KeywordTok{median}\NormalTok{(y_ic[}\OperatorTok{-}\NormalTok{it])}
+\NormalTok{\}}
+\KeywordTok{mean}\NormalTok{(tau_m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.2142
+\end{verbatim}
+
+From the simulations, we see that the average value for \(\tau_M\) is
+2.2293 which is right in between the result of two median equations
+(which are 2 and 2.5)
+
+\hypertarget{problem-3}{%
+\subsection{Problem 3}\label{problem-3}}
+
+\hypertarget{a-1}{%
+\subsubsection{(a)}\label{a-1}}
+
+10000 simulations, generate potential outcomes, approximate the variance
+of \(\hat{\tau}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(MASS)}
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{517}\NormalTok{)}
+\NormalTok{N <-}\StringTok{ }\DecValTok{12}
+\NormalTok{m <-}\StringTok{ }\DecValTok{4}
+\NormalTok{y <-}\StringTok{ }\KeywordTok{mvrnorm}\NormalTok{(N, }\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{), }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FloatTok{0.25}\NormalTok{, }\FloatTok{0.25}\NormalTok{, }\DecValTok{2}\NormalTok{), }\DataTypeTok{ncol=}\DecValTok{2}\NormalTok{))}
+\NormalTok{?}\KeywordTok{mvrnorm}\NormalTok{()}
+\NormalTok{y_control <-}\StringTok{ }\NormalTok{y[ ,}\DecValTok{2}\NormalTok{]}
+\NormalTok{y_treated <-}\StringTok{ }\NormalTok{y[ ,}\DecValTok{1}\NormalTok{]}
+
+\NormalTok{nit <-}\StringTok{ }\DecValTok{10000}
+\NormalTok{path3a1 <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, nit)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nit) \{}
+\NormalTok{  it <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{12}\NormalTok{), }\DecValTok{4}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ F)}
+\NormalTok{  path3a1[i] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y_treated[it]) }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y_control[}\OperatorTok{-}\NormalTok{it])}
+\NormalTok{\}}
+
+\KeywordTok{var}\NormalTok{(path3a1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4960607
+\end{verbatim}
+
+Now we compare this value we got with the formula used in class
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tau <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y_treated) }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y_control)}
+\NormalTok{Stc_sqrd <-}\StringTok{ }\KeywordTok{sum}\NormalTok{((y_treated }\OperatorTok{-}\StringTok{ }\NormalTok{y_control }\OperatorTok{-}\StringTok{ }\NormalTok{tau)}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(}\KeywordTok{length}\NormalTok{(y_treated) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{)}
+
+\NormalTok{nit <-}\StringTok{ }\DecValTok{10000}
+\NormalTok{path3a2 <-}\StringTok{ }\KeywordTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, nit)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\NormalTok{nit) \{}
+\NormalTok{  it <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{12}\NormalTok{), }\DecValTok{4}\NormalTok{, }\DataTypeTok{replace =}\NormalTok{ F)}
+\NormalTok{  path3a2[i] <-}\StringTok{ }\KeywordTok{var}\NormalTok{(y_treated[it])}\OperatorTok{/}\NormalTok{m }\OperatorTok{+}\StringTok{ }\KeywordTok{var}\NormalTok{(y_control[}\OperatorTok{-}\NormalTok{it])}\OperatorTok{/}\NormalTok{(N}\OperatorTok{-}\NormalTok{m) }\OperatorTok{-}\StringTok{ }\NormalTok{Stc_sqrd}\OperatorTok{/}\NormalTok{N}
+\NormalTok{\}}
+
+\KeywordTok{mean}\NormalTok{(path3a2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.501702
+\end{verbatim}
+
+The variance of \(\hat{\tau}\) approximated through the Monte-Carlo
+simulation is very close to the variance estimate using the formula in
+class. This means that our approximation does correspond to the formula
+result.
+
+\hypertarget{c}{%
+\subsubsection{(c)}\label{c}}
+
+Three sensible estimators for \(\mathbb{V}(\hat{\tau})\)
+
+Let \(N\) = \# units, \(N_t\) = \# treated units, \(N_c\) = \# control
+units, and \(W\) = vector of treatment assignments.
+
+First we have
+\(\mathbb{V}_{neyman}(\hat{\tau}) = \frac{S_c^2}{N_c} + \frac{S_t^2}{N_t}\).
+This estimator is unbiased when the treatment effect
+\(\tau_i = Y_i(1) - Y_i(0)\) hoolds constant for all \(i\).
+
+Next, we have
+\(\mathbb{V}_{\rho_{ct}} (\hat{\tau}) = s_c^2 * \frac{N_t}{N * N_c} + s_t^2 * \frac{N_c}{N * N_t} + \rho_{ct} * s_c^2 * s_t^2 * \frac{2}{N}\).
+This estimator is unbiased if we know the correlation between \(Y_i(0)\)
+and \(Y_i(1)\).
+
+Finallly, we have
+\(\mathbb{V}_{const}(\hat{\tau}) = s^2 * (\frac{1}{N_c} + \frac{1}{N_t})\).
+This estimator is unbiased when the treatment effect
+\(\tau_i = Y_i(1) - Y_i(0)\) hoolds constant for all \(i\). In addition,
+\(s^2 = s_c^2 = s_t^2\).
+
+\hypertarget{problem-4}{%
+\subsection{Problem 4}\label{problem-4}}
+
+\hypertarget{a-2}{%
+\subsubsection{(a)}\label{a-2}}
+
+Since our assumption is that SUTVA holds. As a result, the outcome for
+one student would not have an effect on the outcome for another student.
+There would be a total of \(2*N\) potential outcomes, with each unit
+having 2 potential outcomes under either \(t=0\) or \(t=1\).
+
+The effect of the virus on a student \(i\):
+\[\tau_i = (Y_i|T_i = 1) - (Y_i|T_i = 0)\]
+
+Using the formula, we have the ATE:
+\[\hat{\tau} = \frac{1}{m} \sum_{i=1}^{m} Y_i T_i + \frac{1}{N-m} \sum_{i=1}^{N-m} Y_i T_i\]
+
+\hypertarget{b-1}{%
+\subsubsection{(b)}\label{b-1}}
+
+The fact that the virus is contagious does not necessarily violate SUTVA
+because it does not necessarily change the effect of the virus on any
+given student \(i\). Although the virus spreads between students, the
+fact that one student has the virus does not change the expected effect
+of the virus on another student since this expected effect has already
+factored in the possibility oof catching the virus for this one student.
+In other words, if we look at the formula for effect of the virus on a
+student \(i\), \((Y_i|T_i = 1) - (Y_i|T_i = 0)\) is not influenced by
+any given \(T_j = 1\).
+
+\hypertarget{c-1}{%
+\subsubsection{(c)}\label{c-1}}
+
+If more than half the class get the virus, the whole class's outcomes
+are affected. This definitely violates SUTVA as the potential outcome of
+a unit (one student) is immpacted by the potential outcomes of other
+units.
+
+For the number of potential outcomes, we have two different scenarios to
+account for. If less than half the class gets the virus, SUTVA holds, so
+the total potential outcomes is still 2N. However, in the scenario that
+more than half get the virus, we would have an extra number of potential
+outcomes. This can be written down as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  If N is even:
+\end{itemize}
+
+\[ Total(potential\,outcomes) = 2N + \sum_{k = N/2}^N {N \choose k}\]
+
+\begin{itemize}
+\tightlist
+\item
+  If N is odd:
+\end{itemize}
+
+\[ Total(potential\,outcomes) = 2N + \sum_{k = (N+1)/2}^N {N \choose k} \]
+
+\hypertarget{d-1}{%
+\subsubsection{(d)}\label{d-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Contagion can be a threat to SUTVA since the assignment might not be
+  random when it comes to the effect of virus. One example is that
+  immunocompromised students have higher likelihood of catching the
+  virus in the first place, which violates the probability assignment
+  property of SUTVA. This can make ATE biased.
+\item
+  The conditions in (c) can pose a threat to the experiment if
+  \(m \geq \frac{N}{2}\), i.e.~more than half the class was treated, all
+  the students will suffer and their potential outcomes are influenced
+  by the treatment. This violates SUTVA.
+\end{itemize}
+
+\hypertarget{e}{%
+\subsubsection{(e)}\label{e}}
+
+Contagion is a threat to SUTVA since if treatment is considered
+injecting the virus and getting infected through contagion is
+irrelevant. This is due to the fact that un-injected students who catch
+the virus from injected students will still count as the control group
+which poses a threat to the experiment design.
+
+\hypertarget{f}{%
+\subsubsection{(f)}\label{f}}
+
+When only 6 students get infected, we're using the estimator ATE for the
+6 treated units. Assuming that the matched students were randomly
+chosen, the estimatoor is still \(\hat{\tau} = Y_i(1) - Y_i(0)\).
+
+When only 6 students are healthy, we're using the estimator Average
+Treatment Effect for 6 control units.
+
+\hypertarget{problem-5}{%
+\subsection{Problem 5}\label{problem-5}}
+
+\hypertarget{a-3}{%
+\subsubsection{(a)}\label{a-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{villages <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\DataTypeTok{file =} \StringTok{"villages.csv"}\NormalTok{)}
+\NormalTok{nas <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{6}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{) \{}
+\NormalTok{  nas[i,}\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{names}\NormalTok{(villages)[i}\OperatorTok{+}\DecValTok{2}\NormalTok{]}
+\NormalTok{  nas[i,}\DecValTok{2}\NormalTok{] <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{which}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(villages[,i}\OperatorTok{+}\DecValTok{2}\NormalTok{])))}
+\NormalTok{\}}
+\NormalTok{nas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]                    [,2]
+## [1,] "pct.missing"           "90"
+## [2,] "share.total.unskilled" "73"
+## [3,] "head.edu"              "5" 
+## [4,] "mosques"               "2" 
+## [5,] "pct.poor"              "7" 
+## [6,] "total.budget"          "2"
+\end{verbatim}
+
+The variables in the dataset do have missing values as reported above.
+However, the missing outcomes for some units should not raise any flags
+as long as units are selected at random for treatment. However, similar
+to the AIDS-treatment-group example in Imbens and Rubin's book, if these
+missing outcomes correspond to a pre-treatment covariate that we do not
+account for in the experiment, unit-level randomization might be
+influenced and treatment effect might be affected by these pre-treatment
+covariates.
+
+\hypertarget{b-2}{%
+\subsubsection{(b)}\label{b-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#villages <- na.omit(villages)}
+\NormalTok{cis <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\OtherTok{NA}\NormalTok{, }\DataTypeTok{ncol =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{6}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{) \{}
+\NormalTok{  y_treated <-}\StringTok{ }\NormalTok{villages[villages}\OperatorTok{$}\NormalTok{treat.invite }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, i}\OperatorTok{+}\DecValTok{2}\NormalTok{]}
+\NormalTok{  y_control <-}\StringTok{ }\NormalTok{villages[villages}\OperatorTok{$}\NormalTok{treat.invite }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{, i}\OperatorTok{+}\DecValTok{2}\NormalTok{]}
+\NormalTok{  t_test <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(y_treated, y_control)}
+\NormalTok{  cis[i, }\DecValTok{1}\NormalTok{] <-}\StringTok{ }\KeywordTok{names}\NormalTok{(villages)[i}\OperatorTok{+}\DecValTok{2}\NormalTok{]}
+\NormalTok{  cis[i, }\DecValTok{2}\NormalTok{] <-}\StringTok{ }\KeywordTok{round}\NormalTok{(t_test}\OperatorTok{$}\NormalTok{conf.int[}\DecValTok{1}\NormalTok{], }\DecValTok{2}\NormalTok{)}
+\NormalTok{  cis[i, }\DecValTok{3}\NormalTok{] <-}\StringTok{ }\KeywordTok{round}\NormalTok{(t_test}\OperatorTok{$}\NormalTok{conf.int[}\DecValTok{2}\NormalTok{], }\DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+\NormalTok{cis}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]                    [,2]    [,3]  
+## [1,] "pct.missing"           "-0.09" "0.04"
+## [2,] "share.total.unskilled" "-0.03" "0.02"
+## [3,] "head.edu"              "-0.54" "0.41"
+## [4,] "mosques"               "-0.21" "0.08"
+## [5,] "pct.poor"              "-0.03" "0.05"
+## [6,] "total.budget"          "-9.97" "6.45"
+\end{verbatim}
+
+All of these confidence intervals include 0, which means randomization
+did indeed succeed in producing comparble treatment and control groups,
+despite the missing outcomes.
+
+\hypertarget{c-2}{%
+\subsubsection{(c)}\label{c-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y_treated <-}\StringTok{ }\NormalTok{villages[villages}\OperatorTok{$}\NormalTok{treat.invite }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{, }\StringTok{"pct.missing"}\NormalTok{]}
+\NormalTok{y_control <-}\StringTok{ }\NormalTok{villages[villages}\OperatorTok{$}\NormalTok{treat.invite }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{, }\StringTok{"pct.missing"}\NormalTok{]}
+\NormalTok{(t_test <-}\StringTok{ }\KeywordTok{t.test}\NormalTok{(y_treated, y_control))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  y_treated and y_control
+## t = -0.70443, df = 334.89, p-value = 0.4817
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.08778496  0.04149022
+## sample estimates:
+## mean of x mean of y 
+## 0.2289582 0.2521056
+\end{verbatim}
+
+We see that the 95\% confidence interval is (-0.090, 0.040), while the
+p-value for this estimate is 0.4515.
+
+\hypertarget{d-2}{%
+\subsubsection{(d)}\label{d-2}}
+
+We model the data by this linear model
+\(y_i = \hat{\beta}_0 + \hat{\beta}_1x_i + \epsilon_i\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(villages}\OperatorTok{$}\NormalTok{pct.missing }\OperatorTok{~}\StringTok{ }\NormalTok{villages}\OperatorTok{$}\NormalTok{treat.invite)}
+
+\CommentTok{#summary on beta1}
+\KeywordTok{summary}\NormalTok{(mod)}\OperatorTok{$}\NormalTok{coef[}\DecValTok{2}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Estimate  Std. Error     t value    Pr(>|t|) 
+## -0.02314737  0.03321720 -0.69684898  0.48623819
+\end{verbatim}
+
+The p-value from t-test is 0.4515, while the p-value from the regression
+model is 0.4563
+
+They are different because the variance assumptions are different in the
+two models. The linear model seem to assume the same variances, while
+the t-test doesn't.
+
+\hypertarget{e-1}{%
+\subsubsection{(e)}\label{e-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newmod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(villages}\OperatorTok{$}\NormalTok{pct.missing }\OperatorTok{~}\StringTok{ }\NormalTok{(villages}\OperatorTok{$}\NormalTok{treat.invite }\OperatorTok{+}\StringTok{ }\NormalTok{villages}\OperatorTok{$}\NormalTok{share.total.unskilled }\OperatorTok{+}\StringTok{ }\NormalTok{villages}\OperatorTok{$}\NormalTok{head.edu }\OperatorTok{+}\StringTok{ }\NormalTok{villages}\OperatorTok{$}\NormalTok{mosques }\OperatorTok{+}\StringTok{ }\NormalTok{villages}\OperatorTok{$}\NormalTok{pct.poor }\OperatorTok{+}\StringTok{ }\NormalTok{villages}\OperatorTok{$}\NormalTok{total.budget))}
+
+\KeywordTok{summary}\NormalTok{(newmod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = villages$pct.missing ~ (villages$treat.invite + 
+##     villages$share.total.unskilled + villages$head.edu + villages$mosques + 
+##     villages$pct.poor + villages$total.budget))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.2705 -0.2143 -0.0190  0.1852  1.4386 
+## 
+## Coefficients:
+##                                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                     0.3796376  0.0889853   4.266 2.41e-05 ***
+## villages$treat.invite          -0.0262205  0.0331812  -0.790  0.42980    
+## villages$share.total.unskilled  0.0748300  0.1291188   0.580  0.56250    
+## villages$head.edu              -0.0053682  0.0058124  -0.924  0.35619    
+## villages$mosques               -0.0499372  0.0192213  -2.598  0.00967 ** 
+## villages$pct.poor              -0.1203165  0.0749802  -1.605  0.10925    
+## villages$total.budget           0.0005061  0.0002908   1.740  0.08252 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.3415 on 465 degrees of freedom
+##   (95 observations deleted due to missingness)
+## Multiple R-squared:  0.0301, Adjusted R-squared:  0.01758 
+## F-statistic: 2.405 on 6 and 465 DF,  p-value: 0.02675
+\end{verbatim}
+
+We see here with the new regression that the treatment coef is still
+0.429, which is not significant. The t-test also reports insignificant
+p-val of treatment effect. Therefore I fail to reject the
+null-hypothesis, and treatment had no effect.
+
+\hypertarget{f-1}{%
+\subsubsection{(f)}\label{f-1}}
+
+It seems doubtful to me that the treatment had an effect. The t-test was
+not close to significant while the regression estimate was, because this
+could have been caused by adding on multiple covariates to the
+regression just as we did in (e), thus driving down the p-value of the
+model. In the context of an experiment, adding multiple covariates could
+be unreliable (and dishonest) since the covariates could potentially
+have a correlation with our causal relationship of interest.
+
+\end{document}
